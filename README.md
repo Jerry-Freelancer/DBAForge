@@ -12,7 +12,7 @@ React UI -> ASP.NET Core API -> Job Queue -> Worker -> PowerShell 7 -> dbatools 
                          PostgreSQL
 ```
 
-The initial foundation provides a Clean Architecture backend solution, structured Serilog request logging, a health endpoint, a hosted Worker skeleton, test projects, and CI.
+The initial foundation provides a Clean Architecture backend solution, built-in structured JSON console logging, a health endpoint, a hosted Worker skeleton, test projects, and CI.
 
 ## Projects
 
@@ -27,7 +27,7 @@ The initial foundation provides a Clean Architecture backend solution, structure
 
 ## Run locally
 
-Install the .NET 8 SDK, then run:
+Install the .NET 10 SDK, then run:
 
 ```bash
 dotnet run --project src/DBAForge.Api

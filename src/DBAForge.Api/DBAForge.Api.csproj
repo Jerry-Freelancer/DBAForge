@@ -4,7 +4,4 @@
     <ProjectReference Include="../DBAForge.Infrastructure/DBAForge.Infrastructure.csproj" />
     <ProjectReference Include="../DBAForge.Contracts/DBAForge.Contracts.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
-  </ItemGroup>
 </Project>
