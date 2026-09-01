@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+  <ItemGroup>
+    <ProjectReference Include="../DBAForge.Application/DBAForge.Application.csproj" />
+    <ProjectReference Include="../DBAForge.Infrastructure/DBAForge.Infrastructure.csproj" />
+    <ProjectReference Include="../DBAForge.Contracts/DBAForge.Contracts.csproj" />
+  </ItemGroup>
+</Project>
