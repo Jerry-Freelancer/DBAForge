@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, work]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore DBAForge.sln
+      - run: dotnet build DBAForge.sln --configuration Release --no-restore
+      - run: dotnet test DBAForge.sln --configuration Release --no-build

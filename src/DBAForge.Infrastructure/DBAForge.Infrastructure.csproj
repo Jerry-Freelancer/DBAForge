@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../DBAForge.Application/DBAForge.Application.csproj" />
+    <ProjectReference Include="../DBAForge.Domain/DBAForge.Domain.csproj" />
+    <ProjectReference Include="../DBAForge.Contracts/DBAForge.Contracts.csproj" />
+  </ItemGroup>
+</Project>
