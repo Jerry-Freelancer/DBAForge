@@ -1,14 +1,14 @@
 # Backend architecture
 
-The ASP.NET Core API is the command and query boundary. It must validate input, create durable jobs, and return state; it must not start PowerShell processes in request handlers.
+FastAPI is the REST command/query boundary. It validates input, creates durable jobs, and returns state; it must not execute PowerShell processes in request handlers.
 
-Future workflow endpoints use the sequence:
+Future migration workflows use this sequence:
 
 1. Discover source and destination metadata.
 2. Validate compatibility and safety conditions.
 3. Generate a read-only migration plan and PowerShell preview.
 4. Require explicit confirmation.
 5. Enqueue execution for the Worker.
-6. Persist structured events and broadcast progress over SignalR.
+6. Persist structured events and broadcast progress.
 
-Every long-running API and application operation accepts a `CancellationToken`. API logs must use structured logging and must never contain a credential, secret reference value, or generated connection password.
+Long-running I/O must use async APIs. API logs must be structured and never contain credentials, passwords, or secret-reference values.

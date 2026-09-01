@@ -1,0 +1,34 @@
+services:
+  api:
+    build:
+      context: ../backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: ../backend
+    command: ["python", "-m", "app.worker.runner"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: dbaforge
+      POSTGRES_USER: dbaforge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD before starting Docker Compose}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbaforge -d dbaforge"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

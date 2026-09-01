@@ -1,9 +1,15 @@
 # Development setup
 
-Install the .NET 10 SDK, Node.js 20+, PowerShell 7, and PostgreSQL before running the full platform. The initial backend can be validated with:
+Install Python 3.12+ and [uv](https://docs.astral.sh/uv/). PowerShell 7, dbatools, and PostgreSQL are required when building the execution worker.
+
+From the repository root:
 
 ```bash
-dotnet test
+cd backend
+uv sync --dev
+uv run ruff check .
+uv run pytest
+uv run uvicorn app.main:app --reload
 ```
 
-The production worker additionally requires PowerShell 7 and the dbatools module. No SQL Server credentials should be committed to local configuration or test fixtures.
+No SQL Server credentials, connection strings, or production backup locations may be committed to local configuration or test fixtures.

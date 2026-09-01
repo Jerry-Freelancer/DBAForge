@@ -1,9 +1,9 @@
-# .NET
-bin/
-obj/
-TestResults/
-*.user
-*.suo
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
 
 # Node
 node_modules/
@@ -19,4 +19,4 @@ coverage/
 .env
 .env.*
 !.env.example
-appsettings.Local.json
+!deploy/.env.example
