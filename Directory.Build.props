@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <!-- Target the SDK bundled framework so a .NET 10 SDK can run the API without downloading .NET 8 targeting packs. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+</Project>
