@@ -65,7 +65,24 @@ cp deploy/.env.example deploy/.env
 docker compose --env-file deploy/.env -f deploy/docker-compose.yml up --build
 ```
 
-PowerShell 7 and the dbatools module must be installed in the Worker image before migration execution is enabled; the initial Worker is deliberately an execution-free host.
+## Test a registered SQL Server instance
+
+The API does not run PowerShell. It stores a connection-test job in PostgreSQL, and the Worker claims that job before invoking dbatools. Register a Windows-authenticated instance:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/v1/instances \
+  -H "Content-Type: application/json" \
+  -d '{"name":"SQL01","host":"sql01.example.test","port":1433,"authentication_type":"windows"}'
+```
+
+Copy the returned `id`, then queue a test and poll its job result:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/v1/instances/<instance-id>/test
+curl http://127.0.0.1:8000/api/v1/jobs/<job-id>
+```
+
+A queued job becomes `succeeded` or `failed` after the Worker runs `Connect-DbaInstance`. Current V1 connection testing intentionally supports Windows authentication only; no password is sent through the API or PowerShell script.
 
 ## Safety principles
 

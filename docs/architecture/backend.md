@@ -1,6 +1,6 @@
 # Backend architecture
 
-FastAPI is the REST command/query boundary. It validates input, creates durable jobs, and returns state; it must not execute PowerShell processes in request handlers.
+FastAPI is the REST command/query boundary. It validates input, creates durable PostgreSQL jobs, and returns state; it must not execute PowerShell processes in request handlers. Connection-test requests return `202 Accepted` with a job identifier, which clients poll through the jobs API.
 
 Future migration workflows use this sequence:
 

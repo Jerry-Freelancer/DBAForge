@@ -1,7 +1,10 @@
 services:
   api:
     build:
-      context: ../backend
+      context: ..
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://dbaforge:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD before starting Docker Compose}@postgres:5432/dbaforge
     ports:
       - "8000:8000"
     depends_on:
@@ -10,8 +13,11 @@ services:
 
   worker:
     build:
-      context: ../backend
+      context: ..
+      dockerfile: backend/Dockerfile
     command: ["python", "-m", "app.worker.runner"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://dbaforge:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD before starting Docker Compose}@postgres:5432/dbaforge
     depends_on:
       postgres:
         condition: service_healthy
