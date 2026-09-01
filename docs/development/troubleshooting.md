@@ -1,5 +1,16 @@
 # Troubleshooting
 
+
+## `IServiceCollection` or `Microsoft.Extensions` cannot be found
+
+The Application and Infrastructure projects register services through dependency-injection extension methods. They explicitly reference the SDK-provided `Microsoft.AspNetCore.App` framework, so this requires no additional NuGet package. Pull the latest changes, then restore and run from the repository root:
+
+```powershell
+git pull
+dotnet restore
+dotnet run --project src/DBAForge.Api
+```
+
 ## `NU1100` when starting the API
 
 The initial scaffold targeted `net8.0`. A machine with only the .NET 10 SDK may not have the .NET 8 targeting packs installed, and an offline or restricted NuGet configuration cannot download them. DBAForge now targets `net10.0`, which uses the reference packs bundled with the .NET 10 SDK.
